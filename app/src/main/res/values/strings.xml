@@ -1,3 +1,21 @@
 <resources>
-    <string name="app_name">NewsApp</string>
+    <string name="app_name">News App</string>
+    <string name="top_headlines">Top Headlines</string>
+    <string name="news_sources">News Sources</string>
+    <string name="category_news">Business News</string>
+    <string name="language">Language</string>
+    <string name="search">Search</string>
+    <string name="country">Country</string>
+    <string name="sourceImage">sourceImage</string>
+    <string name="bloomberg">Bloomberg</string>
+    <string name="county_name">County Name</string>
+    <string name="choose_your_preferred_language_for_news">Choose your preferred language for news.</string>
+    <string name="choose_your_preferred_country_for_news">Choose your preferred Country for news.</string>
+    <string name="language_code">Language Code</string>
+    <string name="country_name">Country Name</string>
+    <string name="language_name">Language Name</string>
+    <string name="languages">Languages</string>
+    <string name="search_news">Search News</string>
+    <string name="loading">Fetching Top Headlines...</string>
+    <string name="fetching_sources">Fetching Sources...</string>
 </resources>

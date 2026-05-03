@@ -1,5 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Base application theme. -->
+    <style name="Base.Theme.NewsApp" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:statusBarColor">@color/primaryVariant</item>
+    </style>
 
-    <style name="Theme.NewsApp" parent="android:Theme.Material.Light.NoActionBar" />
+    <style name="Theme.NewsApp" parent="Base.Theme.NewsApp" />
+
 </resources>

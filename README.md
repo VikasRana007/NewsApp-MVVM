@@ -354,8 +354,8 @@ A Kotlin-Compose-MVVM Scalable Clean Architecture Project with Offline First App
 
 ```bash
 
-git clone https://github.com/VikasRana007/OfflineFirstNewsApp.git
-cd OfflineFirstNewsApp
+git clone https://github.com/VikasRana007/NewsApp-MVVM.git
+cd NewsAppPublicRepository
 ```
 - Visit newsapi.org and sign up for an API key, Copy the API key provided
 - Open the build.gradle.kts file in the app module. Find the following line
