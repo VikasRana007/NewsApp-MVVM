@@ -1,0 +1,118 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- APP BAR -->
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="82dp"
+                android:title="@string/app_name"
+                android:background="?attr/colorPrimary"
+                android:paddingTop="12dp"
+                app:titleTextColor="@color/white"/>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+
+        <!-- DASHBOARD -->
+        <androidx.constraintlayout.motion.widget.MotionLayout
+            android:id="@+id/motionLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/dashboard_background"
+            app:layoutDescription="@xml/dashboard_motion"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <!-- Top Headlines Card -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardTopHeadlines"
+                style="@style/MyMaterialCard"
+                app:rippleColor="?attr/colorPrimary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    style="@style/MyTextView"
+                    android:text="@string/top_headlines"/>
+
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <!-- News Sources -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardNewsSources"
+                style="@style/MyMaterialCard"
+                app:rippleColor="?attr/colorPrimary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cardTopHeadlines">
+
+
+                <TextView
+                    style="@style/MyTextView"
+                    android:text="@string/news_sources"/>
+
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <!-- Countries -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardCountries"
+                style="@style/MyMaterialCard"
+                app:rippleColor="?attr/colorPrimary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cardNewsSources">
+
+                <TextView
+                    style="@style/MyTextView"
+                    android:text="@string/country" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <!-- Languages -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardLanguages"
+                style="@style/MyMaterialCard"
+                app:rippleColor="?attr/colorPrimary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cardCountries">
+
+                <TextView
+                    style="@style/MyTextView"
+                    android:text="@string/language" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <!-- Search -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardSearch"
+                style="@style/MyMaterialCard"
+                app:rippleColor="?attr/colorPrimary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cardLanguages">
+
+                <TextView
+                    style="@style/MyTextView"
+                    android:text="@string/search" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+        </androidx.constraintlayout.motion.widget.MotionLayout>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</layout>

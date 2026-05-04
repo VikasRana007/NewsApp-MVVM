@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+<!--    <color name="primaryColor">#1B263B</color>-->
+<!--    <color name="primaryVariant">#415A77</color>-->
+<!--    <color name="secondaryColor">#E0E1DD</color>-->
+
     <color name="primaryColor">#124559</color>
     <color name="primaryVariant">#01161E</color>
     <color name="secondaryColor">#AEC3B0</color>

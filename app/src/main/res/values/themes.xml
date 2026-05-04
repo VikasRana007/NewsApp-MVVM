@@ -1,9 +1,36 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.NewsApp" parent="Theme.Material3.DayNight.NoActionBar">
+
+        <item name="colorPrimary">@color/primaryColor</item>
+        <item name="colorPrimaryContainer">@color/primaryVariant</item>
+
+        <item name="colorSecondary">@color/secondaryColor</item>
+
         <item name="android:statusBarColor">@color/primaryVariant</item>
     </style>
 
     <style name="Theme.NewsApp" parent="Base.Theme.NewsApp" />
+
+
+
+    <style name="MyMaterialCard">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">70dp</item>
+        <item name="cardElevation">4dp</item>
+        <item name="cardCornerRadius">16dp</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:layout_margin">12dp</item>
+        <item name="android:stateListAnimator">@animator/card_lift_animator</item>
+    </style>
+
+    <style name="MyTextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
 
 </resources>
