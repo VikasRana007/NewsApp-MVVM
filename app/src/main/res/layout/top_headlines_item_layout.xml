@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -19,53 +19,53 @@
                 android:id="@+id/newsImage"
                 android:layout_width="0dp"
                 android:layout_height="220dp"
+                android:contentDescription="@string/sourceImage"
                 android:scaleType="centerCrop"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:contentDescription="@string/sourceImage"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/title"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginTop="4dp"
                 android:fontFamily="@font/cabin_bold"
                 android:text="@string/top_headlines"
-                android:layout_marginTop="4dp"
                 android:textSize="16sp"
-                android:layout_marginHorizontal="8dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/newsImage"/>
+                app:layout_constraintTop_toBottomOf="@+id/newsImage" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/description"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginTop="4dp"
                 android:fontFamily="@font/light_thin"
                 android:text="@string/top_headlines"
                 android:textSize="14sp"
-                android:layout_marginTop="4dp"
-                android:layout_marginHorizontal="8dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/title"/>
+                app:layout_constraintTop_toBottomOf="@+id/title" />
 
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/source"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="8dp"
                 android:fontFamily="@font/light_thin"
                 android:text="@string/top_headlines"
                 android:textSize="12sp"
-                android:layout_marginTop="4dp"
-                android:layout_marginBottom="8dp"
-                android:layout_marginHorizontal="8dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/description"/>
+                app:layout_constraintTop_toBottomOf="@+id/description" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

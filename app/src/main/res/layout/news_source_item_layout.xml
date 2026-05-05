@@ -8,7 +8,7 @@
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cardTopHeadlines"
-            style="@style/MyMaterialCard"
+            style="@style/MyMaterialCardForRecyclerView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
