@@ -7,7 +7,7 @@ ksp = "2.2.10-2.0.2" # Always match major Kotlin version
 loggingInterceptor = "5.3.2"
 retrofit = "3.0.0"
 kotlinxSerializationJson = "1.10.0"
-#hilt = "2.59.2"
+hilt = "2.59.2"
 dagger = "2.59.2"
 coil = "3.4.0"
 lifecycle = "2.10.0"
@@ -45,8 +45,8 @@ dagger-compiler = { group = "com.google.dagger", name = "dagger-compiler", versi
 
 
 ## Dagger Hilt
-#hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
-#hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt" }
+hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
+hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt" }
 
 # Coil
 coil-kt = { group = "io.coil-kt.coil3", name = "coil", version.ref = "coil" }
@@ -81,6 +81,6 @@ androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-co
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 google-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
-#hilt-android = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
+hilt-android = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 # Add the Serialization Plugin (Crucial for @Serializable to work)
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }

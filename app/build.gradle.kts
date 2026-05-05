@@ -2,6 +2,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.plugin.serialization")
     id("com.google.devtools.ksp")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -87,8 +88,12 @@ dependencies {
     implementation(libs.kotlinx.coroutines.android) // Required for Dispatchers.Main
 
     // Dagger 2
-    implementation(libs.dagger.runtime)
-    ksp(libs.dagger.compiler)
+//    implementation(libs.dagger.runtime)
+//    ksp(libs.dagger.compiler)
+
+    // Dagger-Hilt
+    implementation(libs.hilt.android)
+    ksp(libs.hilt.compiler)  // ✅ Changed from kapt to ksp
 
     //Custom Tab Browser
     implementation(libs.androidx.browser.v190)

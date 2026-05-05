@@ -1,10 +1,7 @@
 package me.vikas.newsapp
 
 import android.app.Application
+import dagger.hilt.android.HiltAndroidApp
 
-class NewsApplication: Application() {
-
-    override fun onCreate() {
-        super.onCreate()
-    }
-}
+@HiltAndroidApp
+class NewsApplication : Application()
