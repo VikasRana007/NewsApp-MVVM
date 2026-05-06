@@ -6,6 +6,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ActivityComponent
 import dagger.hilt.android.scopes.ActivityScoped
 import me.vikas.newsapp.ui.countrywisenews.CountryWiseNewsAdapter
+import me.vikas.newsapp.ui.languagewisenews.LanguageWiseAdapter
 import me.vikas.newsapp.ui.newslist.NewsListAdapter
 import me.vikas.newsapp.ui.newssource.NewsSourceAdapter
 import me.vikas.newsapp.ui.topheadline.TopHeadlineAdapter
@@ -33,4 +34,7 @@ object ActivityModule {
     @Provides
     fun provideCountryListAdapter() = CountryWiseNewsAdapter(mutableListOf())
 
+    @ActivityScoped
+    @Provides
+    fun provideLanguageListAdapter() = LanguageWiseAdapter(mutableListOf())
 }

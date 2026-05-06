@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import me.vikas.newsapp.databinding.ActivityMainBinding
 import me.vikas.newsapp.databinding.ActivityMainBinding.inflate
 import me.vikas.newsapp.ui.countrywisenews.CountryWiseNewsActivity
+import me.vikas.newsapp.ui.languagewisenews.LanguageWiseNewsScreen
 import me.vikas.newsapp.ui.newssource.NewsSourceActivity
 import me.vikas.newsapp.ui.topheadline.TopHeadlineActivity
 import me.vikas.newsapp.utils.launchActivity
@@ -44,6 +45,10 @@ class MainActivity : AppCompatActivity() {
 
             cardCountries.setOnClickListener {
                 launchActivity<CountryWiseNewsActivity>(false)
+            }
+
+            cardLanguages.setOnClickListener {
+                launchActivity<LanguageWiseNewsScreen>(false)
             }
 
         }

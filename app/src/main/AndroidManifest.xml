@@ -38,6 +38,10 @@
             android:name=".ui.countrywisenews.CountryWiseNewsActivity"
             android:exported="false" />
 
+        <activity
+            android:name=".ui.languagewisenews.LanguageWiseNewsScreen"
+            android:exported="false" />
+
     </application>
 
 </manifest>
