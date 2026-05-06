@@ -10,7 +10,6 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import kotlinx.serialization.json.Json
 import me.vikas.newsapp.BuildConfig
-import me.vikas.newsapp.NewsApplication
 import me.vikas.newsapp.data.api.ApiKeyInterceptor
 import me.vikas.newsapp.data.api.NetworkService
 import okhttp3.MediaType.Companion.toMediaType
