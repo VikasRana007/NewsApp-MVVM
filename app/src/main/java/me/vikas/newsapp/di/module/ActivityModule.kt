@@ -5,6 +5,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ActivityComponent
 import dagger.hilt.android.scopes.ActivityScoped
+import me.vikas.newsapp.ui.newssource.NewsSourceAdapter
 import me.vikas.newsapp.ui.topheadline.TopHeadlineAdapter
 
 @Module
@@ -18,5 +19,8 @@ object ActivityModule {
     @Provides
     fun provideTopHeadlineAdapter() = TopHeadlineAdapter(mutableListOf())
 
+    @ActivityScoped
+    @Provides
+    fun provideNewsSourceAdapter() = NewsSourceAdapter(mutableListOf())
 
 }
