@@ -16,8 +16,10 @@ import me.vikas.newsapp.R
 import me.vikas.newsapp.data.model.news_source.Source
 import me.vikas.newsapp.databinding.ActivityNewsSourceBinding
 import me.vikas.newsapp.ui.base.UiState
+import me.vikas.newsapp.ui.newslist.NewsListActivity
 import me.vikas.newsapp.utils.AppConstant.SOURCE
 import me.vikas.newsapp.utils.AppConstant.TAG
+import me.vikas.newsapp.utils.launchActivity
 import javax.inject.Inject
 @AndroidEntryPoint
 class NewsSourceActivity : AppCompatActivity() {
@@ -96,6 +98,6 @@ class NewsSourceActivity : AppCompatActivity() {
 
     fun openSource(source: Source) {
         SOURCE = source.id
-        //launchActivity<NewsListActivity>(false)
+        launchActivity<NewsListActivity>(false)
     }
 }

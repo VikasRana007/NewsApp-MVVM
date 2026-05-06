@@ -30,6 +30,10 @@
             android:name=".ui.newssource.NewsSourceActivity"
             android:exported="false" />
 
+        <activity
+            android:name=".ui.newslist.NewsListActivity"
+            android:exported="false" />
+
     </application>
 
 </manifest>
