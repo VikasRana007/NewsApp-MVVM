@@ -42,6 +42,10 @@
             android:name=".ui.languagewisenews.LanguageWiseNewsScreen"
             android:exported="false" />
 
+        <activity
+            android:name=".ui.searchnews.NewsSearchActivity"
+            android:exported="false" />
+
     </application>
 
 </manifest>

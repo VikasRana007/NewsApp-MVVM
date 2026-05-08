@@ -9,6 +9,7 @@ import me.vikas.newsapp.ui.countrywisenews.CountryWiseNewsAdapter
 import me.vikas.newsapp.ui.languagewisenews.LanguageWiseAdapter
 import me.vikas.newsapp.ui.newslist.NewsListAdapter
 import me.vikas.newsapp.ui.newssource.NewsSourceAdapter
+import me.vikas.newsapp.ui.searchnews.NewsSearchAdapter
 import me.vikas.newsapp.ui.topheadline.TopHeadlineAdapter
 
 @Module
@@ -37,4 +38,8 @@ object ActivityModule {
     @ActivityScoped
     @Provides
     fun provideLanguageListAdapter() = LanguageWiseAdapter(mutableListOf())
+
+    @ActivityScoped
+    @Provides
+    fun provideNewsSearchAdapter() = NewsSearchAdapter(mutableListOf())
 }
