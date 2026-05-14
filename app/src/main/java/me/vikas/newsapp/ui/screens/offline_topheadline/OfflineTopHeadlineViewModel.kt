@@ -62,10 +62,10 @@ class OfflineTopHeadlineViewModel @Inject constructor(
     private fun collectArticlesFlow(flow: Flow<List<ArticleEntity>>) {
         viewModelScope.launch {
             flow.flowOn(dispatcherProvider.io).catch { e ->
-                    _uiState.value = UiState.Error(e.toString())
-                }.collectLatest {
-                    _uiState.value = UiState.Success(it)
-                }
+                _uiState.value = UiState.Error(e.toString())
+            }.collectLatest {
+                _uiState.value = UiState.Success(it)
+            }
         }
     }
 

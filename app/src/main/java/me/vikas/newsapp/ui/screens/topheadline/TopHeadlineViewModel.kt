@@ -36,7 +36,7 @@ class TopHeadlineViewModel @Inject constructor(
         } else {
 
 //            From here Local Database will be fetched.
-            _uiState.value = UiState.Error("No Internet Connection")
+            _uiState.value = UiState.Error("Please Check Internet Connection")
         }
         //fetchTopHeadlines()
     }
@@ -57,15 +57,15 @@ class TopHeadlineViewModel @Inject constructor(
         }
     }
 
-/*    fun startWorkManager(context: Context) {
-        val request = OneTimeWorkRequestBuilder<NewsUpdateWorker>().setConstraints(
-                Constraints.Builder().setRequiredNetworkType(NetworkType.CONNECTED).build()
-            ).setBackoffCriteria(
-                BackoffPolicy.EXPONENTIAL, 10, TimeUnit.SECONDS
-            ).addTag("news_sync_manual").build()
+    /*    fun startWorkManager(context: Context) {
+            val request = OneTimeWorkRequestBuilder<NewsUpdateWorker>().setConstraints(
+                    Constraints.Builder().setRequiredNetworkType(NetworkType.CONNECTED).build()
+                ).setBackoffCriteria(
+                    BackoffPolicy.EXPONENTIAL, 10, TimeUnit.SECONDS
+                ).addTag("news_sync_manual").build()
 
-        WorkManager.getInstance(context).enqueueUniqueWork(
-                "news_manual_sync", ExistingWorkPolicy.KEEP, request
-            )
-    }*/
+            WorkManager.getInstance(context).enqueueUniqueWork(
+                    "news_manual_sync", ExistingWorkPolicy.KEEP, request
+                )
+        }*/
 }
