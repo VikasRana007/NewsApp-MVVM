@@ -57,10 +57,7 @@ import kotlin.math.sin
 @Composable
 fun OrbitingNewsIcons(visible: Boolean) {
     data class OrbitItem(
-        val icon: ImageVector,
-        val label: String,
-        val angleDeg: Float,
-        val radius: Dp
+        val icon: ImageVector, val label: String, val angleDeg: Float, val radius: Dp
     )
 
     val orbitItems = listOf(
@@ -207,9 +204,11 @@ fun DecorativeCircles(visible: Boolean) {
         targetValue = if (visible) 1f else 0f, animationSpec = tween(800), label = "bgCircles"
     )
 
-    Box(modifier = Modifier
-        .fillMaxSize()
-        .alpha(alpha)) {
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .alpha(alpha)
+    ) {
         // Top-right ambient glow
         Box(
             modifier = Modifier

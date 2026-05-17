@@ -168,11 +168,6 @@ fun BannerErrorPlaceholder() {
     }
 }
 
-// Text Section
-// Equivalent of the three AppCompatTextViews:
-//   title (cabin_bold, 16sp)
-//   description (light_thin, 14sp)
-//   source (light_thin, 12sp)
 @Composable
 fun NewsArticleTextSection(
     title: String, description: String?, source: String?, publishedAt: String? = null
@@ -230,9 +225,6 @@ fun NewsArticleDescription(
     )
 }
 
-
-// Source row  — android:fontFamily="@font/light_thin", 12sp
-// Enhanced: source chip + published date
 
 @Composable
 fun NewsArticleSourceRow(

@@ -6,7 +6,6 @@ import androidx.core.net.toUri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -57,15 +56,14 @@ class NewsSearchViewModel @Inject constructor(
                     return@filter false
                 }
             }.distinctUntilChanged().flatMapLatest {
-                    _uiState.value = UiState.Loading
-                    return@flatMapLatest newsSearchRepository.getNews(it)
-                        .flowOn(dispatcherProvider.io)
-                        .catch { e ->
-                            _uiState.value = UiState.Error(e.toString())
-                        }
-                }.flowOn(dispatcherProvider.io).collect {
-                    _uiState.value = UiState.Success(it)
-                }
+                _uiState.value = UiState.Loading
+                return@flatMapLatest newsSearchRepository.getNews(it).flowOn(dispatcherProvider.io)
+                    .catch { e ->
+                        _uiState.value = UiState.Error(e.toString())
+                    }
+            }.flowOn(dispatcherProvider.io).collect {
+                _uiState.value = UiState.Success(it)
+            }
 
         }
     }
