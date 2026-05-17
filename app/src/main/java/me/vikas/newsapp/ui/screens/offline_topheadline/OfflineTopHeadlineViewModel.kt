@@ -69,19 +69,6 @@ class OfflineTopHeadlineViewModel @Inject constructor(
         }
     }
 
-
-//    private fun fetchArticles() {
-//        viewModelScope.launch {
-//            offlineTopHeadlineRepository.getArticles(COUNTRY)
-//                .flowOn(dispatcherProvider.io)
-//                .catch { e ->
-//                    _uiState.value = UiState.Error(e.toString())
-//                }.collectLatest {
-//                    _uiState.value = UiState.Success(it)
-//                }
-//        }
-//    }
-
     private fun fetchArticlesDirectlyFromDB() {
         viewModelScope.launch {
             offlineTopHeadlineRepository.getArticlesDirectlyFromDB().flowOn(dispatcherProvider.io)
