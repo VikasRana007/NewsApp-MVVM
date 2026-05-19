@@ -1,7 +1,6 @@
 package me.vikas.newsapp.ui.base
 
 sealed class Routes(val name: String) {
-
     data object Splash : Routes("splash")
     data object Dashboard : Routes("dashboard")
     data object OfflineTopHeadline : Routes("offlineTopHeadline")
@@ -13,5 +12,4 @@ sealed class Routes(val name: String) {
     data object CountryWiseNews : Routes("countryWiseNews")
     data object LanguageWiseNews : Routes("languageWiseNews")
     data object WorkManagerTask : Routes("workManagerTask")
-
 }

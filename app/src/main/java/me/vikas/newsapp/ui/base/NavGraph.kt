@@ -240,4 +240,3 @@ fun openCustomTabBrowser(context: Context, newsUrl: String) {
     }
 }
 
-
