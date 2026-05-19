@@ -10,9 +10,7 @@ import me.vikas.newsapp.data.local.entity.synctime.SyncTopHeadlineTime
 import me.vikas.newsapp.data.local.entity.topheadlines.ArticleEntity
 
 @Database(
-    entities = [ArticleEntity::class,
-        NewsSourceEntity::class,
-        SyncTopHeadlineTime::class],
+    entities = [ArticleEntity::class, NewsSourceEntity::class, SyncTopHeadlineTime::class],
     version = 2,
     exportSchema = false
 )

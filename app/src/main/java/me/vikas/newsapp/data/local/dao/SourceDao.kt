@@ -20,7 +20,7 @@ interface SourceDao {
     fun deleteAllSources()
 
     @Transaction
-    fun deleteAndInsertSources(sources: List<NewsSourceEntity>){
+    fun deleteAndInsertSources(sources: List<NewsSourceEntity>) {
         deleteAllSources()
         insertAllSources(sources)
     }

@@ -6,7 +6,7 @@ import me.vikas.newsapp.data.local.entity.topheadlines.ArticleEntity
 
 interface DatabaseService {
 
-     suspend fun getAllArticles(): Flow<List<ArticleEntity>>
+    suspend fun getAllArticles(): Flow<List<ArticleEntity>>
 
     suspend fun deleteAllAndInsertAllArticles(articles: List<ArticleEntity>)
 

@@ -8,13 +8,8 @@ import javax.inject.Inject
 class ApiKeyInterceptor @Inject constructor(private val userAgent: String) : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         val originalRequest = chain.request()
-
-        val newRequest = originalRequest.newBuilder()
-            .header("X-Api-Key", BuildConfig.API_KEY)
-            .header("User-Agent", userAgent)
-            .build()
-
+        val newRequest = originalRequest.newBuilder().header("X-Api-Key", BuildConfig.API_KEY)
+            .header("User-Agent", userAgent).build()
         return chain.proceed(newRequest)
     }
-
 }

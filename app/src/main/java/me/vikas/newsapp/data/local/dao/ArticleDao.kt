@@ -12,16 +12,16 @@ import me.vikas.newsapp.data.local.entity.topheadlines.ArticleEntity
 interface ArticleDao {
 
     @Query("SELECT * FROM article")
-     fun getAllArticles(): Flow<List<ArticleEntity>>
+    fun getAllArticles(): Flow<List<ArticleEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-     fun insertAllArticle(articles: List<ArticleEntity>)
+    fun insertAllArticle(articles: List<ArticleEntity>)
 
     @Query("DELETE FROM article")
-     fun deleteAllArticles()
+    fun deleteAllArticles()
 
     @Transaction
-     fun deleteAndInsertArticles(articles: List<ArticleEntity>) {
+    fun deleteAndInsertArticles(articles: List<ArticleEntity>) {
         deleteAllArticles()
         insertAllArticle(articles)
     }

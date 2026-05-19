@@ -7,6 +7,5 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "sync_headline_time")
 data class SyncTopHeadlineTime(
     @PrimaryKey val syncKey: String = "TOP_HEADLINES",
-    @ColumnInfo(name = "lastSyncTime")
-    val lastSyncTime: Long
+    @ColumnInfo(name = "lastSyncTime") val lastSyncTime: Long
 )
