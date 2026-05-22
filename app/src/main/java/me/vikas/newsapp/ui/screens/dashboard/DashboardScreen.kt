@@ -15,7 +15,6 @@ import androidx.compose.material.icons.filled.Newspaper
 import androidx.compose.material.icons.filled.Public
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Source
-import androidx.compose.material.icons.filled.Task
 import androidx.compose.material.icons.filled.Translate
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
@@ -59,7 +58,6 @@ fun DashboardScreen(
 
     Scaffold(
         topBar = {
-            // Equivalent of MaterialToolbar with colorPrimary background
             TopAppBar(
                 title = {
                     Text(
@@ -74,7 +72,6 @@ fun DashboardScreen(
             )
         }) { innerPadding ->
 
-        // Equivalent of dashboard_background gradient
         Box(
             modifier = Modifier
                 .fillMaxSize()
@@ -88,7 +85,6 @@ fun DashboardScreen(
                     )
                 )
         ) {
-            // Vertically scrollable column — mirrors MotionLayout stacked card constraints
             Column(
                 modifier = Modifier
                     .fillMaxSize()
@@ -100,7 +96,6 @@ fun DashboardScreen(
                     AnimatedDashboardCard(
                         item = item,
                         animationDelay = index * 120
-                    // staggered entry like MotionLayout transition
                     )
                 }
             }
