@@ -104,7 +104,7 @@ object ApplicationModule {
         @ApplicationContext context: Context, @DatabaseName databaseName: String
     ): AppDatabase {
         return Room.databaseBuilder(
-            context, AppDatabase::class.java, databaseName
+            context.applicationContext, AppDatabase::class.java, databaseName
         ).addMigrations(MIGRATION_1_2).build()
     }
 
