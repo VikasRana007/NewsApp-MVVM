@@ -55,6 +55,8 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.14"
     }
+
+    tasks.register<CustomTask>("renameApk")
 }
 
 dependencies {
