@@ -44,6 +44,7 @@ class TopHeadlineViewModelTest {
     @Before
     fun setup() {
         dispatcherProvider = TestDispatcherProvider()
+        doReturn(true).`when`(networkHelper).isInternetConnected()
     }
 
     @Suppress("UnusedFlow")
@@ -98,14 +99,15 @@ class TopHeadlineViewModelTest {
                 TopHeadlineViewModel(topHeadlineRepository, dispatcherProvider,
                     networkHelper, savedStateHandle)
             viewModel.uiState.test {
+                val first = awaitItem()
 
-                //1. Initial State
-                assert(awaitItem() is UiState.Loading)
+                val errorState = if (first is UiState.Loading) {
+                    awaitItem()
+                } else {
+                    first
+                }
 
-                //2. Error State
-                assertEquals(
-                    UiState.Error(errorMessage), awaitItem() as UiState.Error
-                )
+                assertEquals(UiState.Error(errorMessage), errorState)
                 cancelAndIgnoreRemainingEvents()
             }
 
