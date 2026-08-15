@@ -1,3 +1,4 @@
+import java.util.Properties
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.plugin.serialization")
@@ -6,13 +7,20 @@ plugins {
     id("org.jetbrains.kotlin.plugin.compose")
 }
 
+val localProperties = Properties()
+val localPropertiesFile: File = rootProject.file("local.properties")
+
+if (localPropertiesFile.exists()) {
+    localPropertiesFile.inputStream().use { inputStream ->
+        localProperties.load(inputStream)
+    }
+}
+val newsApiKey = localProperties.getProperty("API_KEY") ?: ""
+
+
 android {
     namespace = "me.vikas.newsapp"
-    compileSdk {
-        version = release(36) {
-            minorApiLevel = 1
-        }
-    }
+    compileSdk = 37
     buildFeatures {
         buildConfig = true
     }
@@ -20,7 +28,7 @@ android {
     defaultConfig {
         applicationId = "me.vikas.newsapp"
         minSdk = 26
-        targetSdk = 36
+        targetSdk = 37
         versionCode = 1
         versionName = "1.0"
 
@@ -30,7 +38,7 @@ android {
             "String", "BASE_URL", "\"https://newsapi.org/\"")
 
         buildConfigField(
-            "String", "API_KEY", "\"c1f1b06b17484996972e3dec2be6abdf\"")
+            "String", "API_KEY", "\"$newsApiKey\"")
 
     }
 
@@ -54,6 +62,13 @@ android {
 
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.14"
+    }
+
+    lint {
+        // Tells Lint to look at your custom rules file
+        lintConfig = file("lint.xml")
+        // Forces Gradle to crash and break the build if a fatal error occurs
+        abortOnError = true
     }
 }
 
