@@ -12,4 +12,6 @@ object AppConstant {
     const val MIN_SEARCH_CHARACTERS = 3
     const val INITIAL_PAGE = 1
     const val PAGE_SIZE = 10
+
+    //echo "// testing branch protection" >> README.md
 }
