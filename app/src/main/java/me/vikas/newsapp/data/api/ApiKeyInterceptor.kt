@@ -13,3 +13,8 @@ class ApiKeyInterceptor @Inject constructor(private val userAgent: String) : Int
         return chain.proceed(newRequest)
     }
 }
+
+/**
+ * val originalRequest = chain.request().newBuilder().header("Authorization", "Bearer $token")
+ * .build()
+ */

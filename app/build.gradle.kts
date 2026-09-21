@@ -17,6 +17,18 @@ if (localPropertiesFile.exists()) {
 }
 val newsApiKey = localProperties.getProperty("API_KEY") ?: ""
 
+/**
+ * Singing Configuration
+ */
+val keystoreProperties = Properties()
+val keystorePropertiesFile = rootProject.file("keystore.properties")!!
+
+if (keystorePropertiesFile.exists()) {
+    keystorePropertiesFile.inputStream().use { inputStream ->
+        keystoreProperties.load(inputStream)
+    }
+}
+
 
 android {
     namespace = "me.vikas.newsapp"
@@ -42,11 +54,25 @@ android {
 
     }
 
+    signingConfigs {
+        create("release") {
+            keyAlias = keystoreProperties["keyAlias"] as String?
+            keyPassword = keystoreProperties["keyPassword"] as String?
+            storePassword = keystoreProperties["storePassword"] as String?
+
+            storeFile = keystoreProperties["storeFile"]?.let {
+                rootProject.file(it)
+            }
+        }
+    }
+
     buildTypes {
-        release {
-            isMinifyEnabled = false
+        getByName("release") {
+            signingConfig = signingConfigs.getByName("release")
+            isMinifyEnabled = true
             proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
             )
         }
     }
