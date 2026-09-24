@@ -131,3 +131,12 @@ jobs:
       - name: Clean up sensitive files
         if: always()
         run: rm -f release.jks keystore.properties local.properties
+
+      - name: Upload to Firebase App Distribution
+        uses: wzieba/Firebase-Distribution-Github-Action@v1
+        with:
+          appId: 1:941061673159:android:81d2f5c314fa2ace8f6ee2
+          serviceCredentialsFileContent: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          groups: internal-testers
+          file: app/build/outputs/bundle/release/app-release.aab
+          releaseNotes: "Automated release build from CI"

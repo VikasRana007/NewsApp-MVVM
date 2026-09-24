@@ -5,6 +5,8 @@ plugins {
     id("com.google.devtools.ksp")
     id("com.google.dagger.hilt.android")
     id("org.jetbrains.kotlin.plugin.compose")
+    id("com.google.gms.google-services")
+    id("com.google.firebase.appdistribution")  // For App Distribution
 }
 
 val localProperties = Properties()
@@ -167,6 +169,13 @@ dependencies {
 
     // Work Manager
     implementation(libs.androidx.work.runtime.ktx)
+
+    //Firebase
+    // Import the Firebase BoM
+    implementation(platform("com.google.firebase:firebase-bom:34.19.0"))
+    // When using the BoM, don't specify versions in Firebase dependencies
+    implementation("com.google.firebase:firebase-analytics")
+
 
     //Unit Testing
     testImplementation(libs.junit)
