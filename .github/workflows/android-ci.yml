@@ -118,8 +118,8 @@ jobs:
       - name: Create local.properties with API key
         run: echo "API_KEY=${{ secrets.NEWS_API_KEY }}" > local.properties
 
-      - name: Build signed release AAB
-        run: ./gradlew bundleRelease --stacktrace
+      - name: Build signed release APK and AAB
+        run: ./gradlew assembleRelease bundleRelease --stacktrace
 
       - name: Upload release AAB
         uses: actions/upload-artifact@v4
@@ -135,8 +135,8 @@ jobs:
       - name: Upload to Firebase App Distribution
         uses: wzieba/Firebase-Distribution-Github-Action@v1
         with:
-          appId: 1:941061673159:android:81d2f5c314fa2ace8f6ee2
-          serviceCredentialsFileContent: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
-          groups: internal-testers
-          file: app/build/outputs/bundle/release/app-release.aab
-          releaseNotes: "Automated release build from CI"
+            appId: 1:941061673159:android:81d2f5c314fa2ace8f6ee2
+            serviceCredentialsFileContent: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+            groups: internal-testers
+            file: app/build/outputs/apk/release/app-release.apk
+            releaseNotes: "Automated release build from CI"
