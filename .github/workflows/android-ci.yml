@@ -137,6 +137,6 @@ jobs:
         with:
             appId: 1:941061673159:android:81d2f5c314fa2ace8f6ee2
             serviceCredentialsFileContent: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
-            groups: internal-testers
+            groups: Internal-testers
             file: app/build/outputs/apk/release/app-release.apk
             releaseNotes: "Automated release build from CI"
