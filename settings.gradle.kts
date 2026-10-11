@@ -24,4 +24,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "NewsApp"
 include(":app")
+include(":appium-tests")
  

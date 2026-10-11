@@ -9,14 +9,14 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
 import me.vikas.newsapp.data.model.countrynews.Country
-import me.vikas.newsapp.data.repository.CountryRepository
+import me.vikas.newsapp.domain.usecase.country.GetCountriesUseCase
 import me.vikas.newsapp.ui.base.UiState
 import me.vikas.newsapp.utils.DispatcherProvider
 import javax.inject.Inject
 
 @HiltViewModel
 class CountryWiseNewsViewModel @Inject constructor(
-    private val countryRepository: CountryRepository,
+    private val getCountriesUseCase: GetCountriesUseCase,
     private val dispatcherProvider: DispatcherProvider
 ) : ViewModel() {
     private val _uiState = MutableStateFlow<UiState<List<Country>>>(UiState.Loading)
@@ -28,7 +28,7 @@ class CountryWiseNewsViewModel @Inject constructor(
 
     internal fun fetchCountryList() {
         viewModelScope.launch(dispatcherProvider.main) {
-            countryRepository.getCountries()
+            getCountriesUseCase()
                 .flowOn(dispatcherProvider.io)
                 .catch { e ->
                 _uiState.value = UiState.Error(e.toString())

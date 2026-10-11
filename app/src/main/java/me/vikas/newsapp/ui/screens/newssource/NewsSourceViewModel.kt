@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
 import me.vikas.newsapp.data.model.news_source.Source
-import me.vikas.newsapp.data.repository.NewsSourceRepository
+import me.vikas.newsapp.domain.usecase.source.GetNewsSourcesUseCase
 import me.vikas.newsapp.ui.base.UiState
 import me.vikas.newsapp.utils.AppConstant.LANGUAGE
 import me.vikas.newsapp.utils.DispatcherProvider
@@ -18,7 +18,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class NewsSourceViewModel @Inject constructor(
-    private val newsSourceRepository: NewsSourceRepository,
+    private val getNewsSourcesUseCase: GetNewsSourcesUseCase,
     private val dispatcherProvider: DispatcherProvider,
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
@@ -37,7 +37,7 @@ class NewsSourceViewModel @Inject constructor(
 
     fun fetchNewsSource() {
         viewModelScope.launch(dispatcherProvider.main) {
-            newsSourceRepository.getNewsSource(LANGUAGE)
+            getNewsSourcesUseCase(LANGUAGE)
                 .flowOn(dispatcherProvider.io)
                 .catch { e ->
                 _uiState.value = UiState.Error(e.message ?: "Unknown Error")

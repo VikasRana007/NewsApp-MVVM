@@ -231,7 +231,7 @@ fun NavGraph(
 
 fun openCustomTabBrowser(context: Context, newsUrl: String) {
     try {
-        val customTabsIntent =
+        @Suppress("DEPRECATION") val customTabsIntent =
             CustomTabsIntent.Builder().setToolbarColor(0xFF124559.toInt()).setShowTitle(true)
                 .build()
         customTabsIntent.launchUrl(context, newsUrl.toUri())
