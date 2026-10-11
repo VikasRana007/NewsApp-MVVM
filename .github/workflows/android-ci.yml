@@ -60,19 +60,24 @@ jobs:
       - name: Run Appium UI tests
         uses: reactivecircus/android-emulator-runner@v2
         with:
-          api-level: 29
-          target: default
+          api-level: 30
+          target: google_apis
           arch: x86_64
           profile: Nexus 6
           disable-animations: true
-          emulator-options: -no-window -gpu swiftshader_indirect -no-audio -no-snapshot
+          emulator-options: -no-window -gpu swiftshader_indirect -no-audio -no-snapshot -no-boot-anim
           script: |
+            # Wait for emulator to fully boot
+            adb wait-for-device
+            adb shell 'while [[ -z $(getprop sys.boot_completed) ]]; do sleep 1; done;'
+            
             # Start the Appium server in the background
             appium &
-            # Wait a few seconds to ensure the server is ready
-            sleep 10
+            sleep 5
+            
             # Install the Debug APK we just built
             adb install app/build/outputs/apk/debug/app-debug.apk
+            
             # Run the Appium tests!
             ./gradlew :appium-tests:test --stacktrace
 
