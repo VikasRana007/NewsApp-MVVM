@@ -9,6 +9,7 @@ import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.runTest
 import me.vikas.newsapp.data.model.topheadline.Article
 import me.vikas.newsapp.data.repository.TopHeadlineRepository
+import me.vikas.newsapp.domain.usecase.topheadline.GetTopHeadlinesUseCase
 import me.vikas.newsapp.ui.base.UiState
 import me.vikas.newsapp.ui.screens.topheadline.TopHeadlineViewModel
 import me.vikas.newsapp.utils.AppConstant.COUNTRY
@@ -31,6 +32,8 @@ class TopHeadlineViewModelTest {
     @Mock
     private lateinit var topHeadlineRepository: TopHeadlineRepository
 
+    private lateinit var getTopHeadlinesUseCase: GetTopHeadlinesUseCase
+
     private lateinit var dispatcherProvider: DispatcherProvider
 
     private val savedStateHandle = SavedStateHandle(
@@ -45,6 +48,7 @@ class TopHeadlineViewModelTest {
     fun setup() {
         dispatcherProvider = TestDispatcherProvider()
         doReturn(true).`when`(networkHelper).isInternetConnected()
+        getTopHeadlinesUseCase = GetTopHeadlinesUseCase(topHeadlineRepository)
     }
 
     @Suppress("UnusedFlow")
@@ -56,19 +60,12 @@ class TopHeadlineViewModelTest {
             doReturn(flowOf(articles)).`when`(topHeadlineRepository).getTopHeadlines(COUNTRY)
 
             val viewModel =
-                TopHeadlineViewModel(topHeadlineRepository, dispatcherProvider,
+                TopHeadlineViewModel(getTopHeadlinesUseCase, dispatcherProvider,
                     networkHelper, savedStateHandle)
 
             viewModel.uiState.test {
 
-                // ❗ Do NOT assume first is Loading
                 val first = awaitItem()
-
-                // Very Important  Below we used if else condition to avoid the race condition of
-                // fetch news
-                // because in the View Model we are directly calling the fetchNews() inside from
-                // init Block  // we can also use => advanceUntilIdle  but for our view model
-                // scenario the current design is ok
 
                 if (first is UiState.Loading) {
                     val success = awaitItem() as UiState.Success
@@ -96,7 +93,7 @@ class TopHeadlineViewModelTest {
             }).`when`(topHeadlineRepository).getTopHeadlines(COUNTRY)
 
             val viewModel =
-                TopHeadlineViewModel(topHeadlineRepository, dispatcherProvider,
+                TopHeadlineViewModel(getTopHeadlinesUseCase, dispatcherProvider,
                     networkHelper, savedStateHandle)
             viewModel.uiState.test {
                 val first = awaitItem()
@@ -117,9 +114,4 @@ class TopHeadlineViewModelTest {
 
         }
     }
-
-    /**
-     * If we want to do something extra task after Complete the Test Task then we
-     * can use @After Annotation.  as like Tear Down something.
-     */
 }
