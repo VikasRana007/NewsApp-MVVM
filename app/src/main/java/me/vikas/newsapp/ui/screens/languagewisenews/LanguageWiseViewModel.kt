@@ -9,14 +9,14 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
 import me.vikas.newsapp.data.model.languagenews.Language
-import me.vikas.newsapp.data.repository.LanguageRepository
+import me.vikas.newsapp.domain.usecase.language.GetLanguagesUseCase
 import me.vikas.newsapp.ui.base.UiState
 import me.vikas.newsapp.utils.DispatcherProvider
 import javax.inject.Inject
 
 @HiltViewModel
 class LanguageWiseViewModel @Inject constructor(
-    private val languageRepository: LanguageRepository,
+    private val getLanguagesUseCase: GetLanguagesUseCase,
     private val dispatcherProvider: DispatcherProvider
 ) : ViewModel() {
 
@@ -30,7 +30,7 @@ class LanguageWiseViewModel @Inject constructor(
 
     internal fun fetchLanguageList() {
         viewModelScope.launch(dispatcherProvider.main) {
-            languageRepository.getLanguage()
+            getLanguagesUseCase()
                 .flowOn(dispatcherProvider.io)
                 .catch { e ->
                 _uiState.value = UiState.Error(e.toString())

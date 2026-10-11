@@ -10,6 +10,7 @@ import kotlinx.coroutines.test.advanceUntilIdle
 import kotlinx.coroutines.test.runTest
 import me.vikas.newsapp.data.model.news_source.Source
 import me.vikas.newsapp.data.repository.NewsSourceRepository
+import me.vikas.newsapp.domain.usecase.source.GetNewsSourcesUseCase
 import me.vikas.newsapp.ui.base.UiState
 import me.vikas.newsapp.ui.screens.newssource.NewsSourceViewModel
 import me.vikas.newsapp.utils.AppConstant.LANGUAGE
@@ -33,6 +34,8 @@ class NewsSourceViewModelTest {
     @Mock
     private lateinit var newsSourceRepository: NewsSourceRepository
 
+    private lateinit var getNewsSourcesUseCase: GetNewsSourcesUseCase
+
     private lateinit var dispatcherProvider: DispatcherProvider
 
     private val savedStateHandle = SavedStateHandle(
@@ -45,6 +48,7 @@ class NewsSourceViewModelTest {
     @Before
     fun setUp() {
         dispatcherProvider = TestDispatcherProvider()
+        getNewsSourcesUseCase = GetNewsSourcesUseCase(newsSourceRepository)
     }
 
 
@@ -57,7 +61,7 @@ class NewsSourceViewModelTest {
             doReturn(flowOf(sources)).`when`(newsSourceRepository).getNewsSource(LANGUAGE)
 
             val viewModel = NewsSourceViewModel(
-                newsSourceRepository,
+                getNewsSourcesUseCase,
                 dispatcherProvider,
                 savedStateHandle
             )
@@ -81,7 +85,6 @@ class NewsSourceViewModelTest {
 
     }
 
-//    @Suppress("UnusedFlow")
     @Test
     fun fetchNewsSource_whenRepositoryResponseError_shouldSetErrorUIState() {
         val errorMessage = "Some thing went wrong, Please try again."
@@ -91,12 +94,12 @@ class NewsSourceViewModelTest {
             }).`when`(newsSourceRepository).getNewsSource(LANGUAGE)
 
             val viewModel = NewsSourceViewModel(
-                newsSourceRepository,
+                getNewsSourcesUseCase,
                 dispatcherProvider,
                 savedStateHandle
             )
 
-            advanceUntilIdle() // This is used to avoid race condition about fetch news states
+            advanceUntilIdle()
 
             viewModel.uiState.test {
                 val first = awaitItem()

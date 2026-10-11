@@ -10,14 +10,14 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
 import me.vikas.newsapp.data.model.topheadline.Article
-import me.vikas.newsapp.data.repository.NewsCategoryListRepository
+import me.vikas.newsapp.domain.usecase.category.GetSourceWiseHeadlinesUseCase
 import me.vikas.newsapp.ui.base.UiState
 import me.vikas.newsapp.utils.DispatcherProvider
 import javax.inject.Inject
 
 @HiltViewModel
 class SourceWiseHeadlineViewModel @Inject constructor(
-    private val newsCategoryListRepository: NewsCategoryListRepository,
+    private val getSourceWiseHeadlinesUseCase: GetSourceWiseHeadlinesUseCase,
     private val dispatcherProvider: DispatcherProvider,
     savedStateHandle: SavedStateHandle     // Hilt Automatically will inject this
 ) : ViewModel() {
@@ -33,7 +33,7 @@ class SourceWiseHeadlineViewModel @Inject constructor(
 
     fun fetchSourceWiseHeadlineList() {
         viewModelScope.launch(dispatcherProvider.main) {
-            newsCategoryListRepository.fetchSourceWiseHeadlineList(sourceId)
+            getSourceWiseHeadlinesUseCase(sourceId)
                 .flowOn(dispatcherProvider.io).catch { e ->
                     _uiState.value = UiState.Error(e.toString())
                 }.collect {

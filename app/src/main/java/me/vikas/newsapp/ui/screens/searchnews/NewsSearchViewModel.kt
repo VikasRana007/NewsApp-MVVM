@@ -18,7 +18,7 @@ import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
 import me.vikas.newsapp.data.model.topheadline.Article
-import me.vikas.newsapp.data.repository.NewsSearchRepository
+import me.vikas.newsapp.domain.usecase.search.SearchNewsUseCase
 import me.vikas.newsapp.ui.base.UiState
 import me.vikas.newsapp.utils.AppConstant.DEBOUNCE_TIME
 import me.vikas.newsapp.utils.AppConstant.MIN_SEARCH_CHARACTERS
@@ -27,7 +27,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class NewsSearchViewModel @Inject constructor(
-    private val newsSearchRepository: NewsSearchRepository,
+    private val searchNewsUseCase: SearchNewsUseCase,
     private val dispatcherProvider: DispatcherProvider,
 ) : ViewModel() {
 
@@ -57,7 +57,7 @@ class NewsSearchViewModel @Inject constructor(
                 }
             }.distinctUntilChanged().flatMapLatest {
                 _uiState.value = UiState.Loading
-                return@flatMapLatest newsSearchRepository.getNews(it).flowOn(dispatcherProvider.io)
+                return@flatMapLatest searchNewsUseCase(it).flowOn(dispatcherProvider.io)
                     .catch { e ->
                         _uiState.value = UiState.Error(e.toString())
                     }

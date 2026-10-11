@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">News App</string>
-    <string name="loading">Fetching Top Headlines…, &#8230;)</string>
-    <string name="fetching_sources">Fetching Sources…, &#8230;)</string>
+    <string name="loading">Fetching Top Headlines...</string>
+    <string name="fetching_sources">Fetching Sources...</string>
 </resources>
