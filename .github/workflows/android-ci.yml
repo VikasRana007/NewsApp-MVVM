@@ -47,41 +47,49 @@ jobs:
       - name: Build debug APK
         run: ./gradlew assembleDebug --stacktrace
 
-      # - name: Set up Node.js for Appium
-      #   uses: actions/setup-node@v4
-      #   with:
-      #     node-version: '20'
+      - name: Set up Node.js for Appium
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
 
-      # - name: Install Appium and UIAutomator2 driver
-      #   run: |
-      #     npm install -g appium
-      #     appium driver install uiautomator2
+      - name: Install Appium and UIAutomator2 driver
+        run: |
+          npm install -g appium
+          appium driver install uiautomator2
 
-      # - name: Run Appium UI tests
-      #   uses: reactivecircus/android-emulator-runner@v2
-      #   with:
-      #     api-level: 29
-      #     target: default
-      #     arch: x86_64
-      #     disable-animations: true
-      #     script: |
-      #       # Start the Appium server in the background
-      #       appium &
-      #       # Wait a few seconds to ensure the server is ready
-      #       sleep 10
-      #       # Install the Debug APK we just built
-      #       adb install app/build/outputs/apk/debug/app-debug.apk
-      #       # Run the Appium tests!
-      #       ./gradlew :appium-tests:test --stacktrace
+      - name: Run Appium UI tests
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 29
+          target: default
+          arch: x86_64
+          profile: Nexus 5
+          disable-animations: true
+          avd-launch-timeout: 600
+          emulator-options: -no-window -gpu swiftshader_indirect -no-audio -no-snapshot -no-boot-anim
+          script: |
+            # Wait for emulator to fully boot
+            adb wait-for-device
+            adb shell 'while [[ -z $(getprop sys.boot_completed) ]]; do sleep 1; done;'
+            
+            # Start the Appium server in the background & log output
+            appium > appium.log 2>&1 &
+            sleep 5
+            
+            # Install the Debug APK we just built
+            adb install app/build/outputs/apk/debug/app-debug.apk
+            
+            # Run the Appium tests!
+            ./gradlew :appium-tests:test --stacktrace
 
-      # - name: Upload Appium test report
-      #   if: always()
-      #   uses: actions/upload-artifact@v4
-      #   with:
-      #     name: appium-test-report
-      #     path: appium-tests/build/reports/tests/test/
-      #     if-no-files-found: warn
-      #     retention-days: 14
+      - name: Upload Appium test report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: appium-test-report
+          path: appium-tests/build/reports/tests/test/
+          if-no-files-found: warn
+          retention-days: 14
 
       - name: Upload lint report
         if: always()
