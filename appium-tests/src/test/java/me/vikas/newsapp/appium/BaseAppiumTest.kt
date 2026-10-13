@@ -19,10 +19,14 @@ open class BaseAppiumTest {
             .setNoReset(true)
             .setNewCommandTimeout(Duration.ofSeconds(60))
 
-        // Increase timeout for UIAutomator2 Server installation on physical devices
+        // Robust timeouts and execution settings for local and CI devices
         options.setCapability("appium:uiautomator2ServerInstallTimeout", 120000)
+        options.setCapability("appium:adbExecTimeout", 60000)
+        options.setCapability("appium:androidInstallTimeout", 120000)
+        
+        // Give Appium more time to locate the connected device/emulator
+        options.setCapability("appium:newCommandTimeout", 120)
 
-        // Note: Make sure Appium server is running locally on this port
         val serverUrl = URL("http://127.0.0.1:4723")
 
         driver = AndroidDriver(serverUrl, options)
