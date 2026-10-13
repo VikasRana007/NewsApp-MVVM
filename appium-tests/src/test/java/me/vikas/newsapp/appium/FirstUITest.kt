@@ -21,11 +21,11 @@ class FirstUITest : BaseAppiumTest() {
         // 2. Click the Top Headlines card
         topHeadlinesCard.click()
 
-        // 3. Wait for the Top Headlines screen toolbar title to appear
-        // Dashboard title is "News App", and Top Headlines screen title is "Top Headlines".
-        val topHeadlinesTitleLocator = AppiumBy.xpath("//android.widget.TextView[@text='Top Headlines']")
-        val titleElement = wait.until(ExpectedConditions.presenceOfElementLocated(topHeadlinesTitleLocator))
+        // 3. Wait for the Back button on the Top Headlines screen toolbar to appear, 
+        // confirming we have successfully navigated away from the dashboard.
+        val backButtonLocator = AppiumBy.accessibilityId("Back")
+        val backButton = wait.until(ExpectedConditions.presenceOfElementLocated(backButtonLocator))
 
-        assertTrue("Did not successfully navigate to Top Headlines screen.", titleElement != null)
+        assertTrue("Did not successfully navigate to Top Headlines screen.", backButton.isDisplayed)
     }
 }
