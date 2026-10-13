@@ -30,6 +30,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -63,11 +65,13 @@ fun AnimatedDashboardCard(
 private fun DashboardCard(
     item: DashboardItem, modifier: Modifier = Modifier
 ) {
+    val tag = "card_" + item.title.lowercase().replace(" ", "_")
     Card(
         modifier = modifier
             .fillMaxWidth()
             .padding(horizontal = 16.dp, vertical = 8.dp)
-            .testTag(item.title)
+            .testTag(tag)
+            .semantics(mergeDescendants = true) { contentDescription = item.title }
             .clickable { item.onClick() },
         shape = RoundedCornerShape(12.dp),
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
@@ -96,7 +100,7 @@ private fun DashboardCard(
                 ) {
                     Icon(
                         imageVector = item.icon,
-                        contentDescription = item.title,
+                        contentDescription = null, // Set to null to prevent semantic duplication
                         tint = MaterialTheme.colorScheme.primary,
                         modifier = Modifier.size(24.dp)
                     )
